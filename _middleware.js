@@ -1,7 +1,7 @@
 export const onRequest = async ({ request, next }) => {
   const referer = request.headers.get("referer") || "";
 
-  // FANBOX からのアクセス以外は拒否
+  // FANBOXからのアクセス以外は拒否
   if (!referer.includes("fanbox.cc")) {
     return new Response("403 Forbidden - No hotlinking allowed", {
       status: 403,
@@ -11,6 +11,5 @@ export const onRequest = async ({ request, next }) => {
     });
   }
 
-  // FANBOX からのアクセスは許可
   return next();
 };
